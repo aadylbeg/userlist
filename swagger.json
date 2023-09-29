@@ -1,0 +1,156 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Users API",
+    "description": "API for managing users"
+  },
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/users": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get all users",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Create a new user",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/{uuid}": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get one users",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "User UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Update a user",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "User UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Delete a user",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "User UUID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "uuid": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "username": {
+          "type": "string",
+          "maxLength": 255
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "image": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "username",
+        "email"
+      ]
+    }
+  }
+}
